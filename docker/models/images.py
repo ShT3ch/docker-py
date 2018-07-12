@@ -294,7 +294,7 @@ class ImageCollection(Collection):
         """
         return self.prepare_model(self.client.api.inspect_image(name))
 
-    def get_registry_data(self, name):
+    def get_registry_data(self, name, **kwargs):
         """
         Gets the registry data for an image.
 
@@ -309,7 +309,7 @@ class ImageCollection(Collection):
         """
         return RegistryData(
             image_name=name,
-            attrs=self.client.api.inspect_distribution(name),
+            attrs=self.client.api.inspect_distribution(name, **kwargs),
             client=self.client,
             collection=self,
         )
