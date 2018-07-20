@@ -10,7 +10,6 @@ log = logging.getLogger(__name__)
 
 
 class ImageApiMixin(object):
-
     @utils.check_resource('image')
     def get_image(self, image, chunk_size=DEFAULT_DATA_CHUNK_SIZE):
         """
@@ -275,8 +274,10 @@ class ImageApiMixin(object):
             headers['X-Registry-Auth'] = auth.encode_header(auth_config)
 
         return self._result(
-            self._get(self._url("/distribution/{0}/json", image), headers=headers), True
-        )
+                self._get(
+                    self._url("/distribution/{0}/json", image),
+                    headers=headers),
+                True)
 
     def load_image(self, data, quiet=None):
         """
